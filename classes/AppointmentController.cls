@@ -120,7 +120,7 @@ public class AppointmentController {
             }
             e.StartDateTime= DateTime.newInstance(Integer.valueOf(year), Integer.valueOf(month)+1, Integer.valueOf(dateSelected), Integer.valueOf(sHour), Integer.valueOf(sMinute), 0);
             e.EndDateTime= DateTime.newInstance(Integer.valueOf(year), Integer.valueOf(month)+1, Integer.valueOf(dateSelected), Integer.valueOf(eHour),Integer.valueOf(eMinute), 0);
-           
+           	subj+=' with '+contactRecord.FirstName+' '+contactRecord.LastName;
             e.Subject=subj;
             e.Description='New Event Added with '+contactRecord.FirstName;
             if(e.StartDateTime < DateTime.now() || e.EndDateTime < DateTime.now())
