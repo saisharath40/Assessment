@@ -13,7 +13,7 @@
 			header: {
 				left: 'prev,next today',
 				center: 'title',
-				right: 'agendaWeek'
+				right: 'agendaWeek,agendaDay'
 			},
 			editable: true,
             allDaySlot: false,
@@ -33,7 +33,8 @@
 			],
         dayClick: function (dt, jsEvent, view) {  
                 var d=new Date(dt);
-                var myWindow = window.open("/apex/Appointment?id={!contactId}&stH="+d.getUTCHours()+"&smM="+d.getUTCMinutes()+"&year="+d.getFullYear()+"&month="+d.getMonth()+"&date="+d.getDate(), "popup", "width=300,height=500,top=300,left=500");
+            //alert(d);
+                var myWindow = window.open("/apex/Appointment?id={!contactId}&stH="+d.getUTCHours()+"&smM="+d.getUTCMinutes()+"&year="+d.getUTCFullYear()+"&month="+d.getUTCMonth()+"&date="+d.getUTCDate(), "popup", "width=300,height=500,top=300,left=500");
            	 } 
 			
 		});

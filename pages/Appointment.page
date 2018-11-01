@@ -4,7 +4,6 @@
         <apex:pageBlock >
             <apex:pageBlockSection >
                 <apex:outputField label="Assigned To" value="{!contactRecord.Owner.Name}"/>
-                <!--<apex:outputField value="{!date}"/>-->
             </apex:pageBlockSection>
             <apex:pageBlockSection >
                 <apex:pageBlockSectionItem >
