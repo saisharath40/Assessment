@@ -213,7 +213,7 @@ public class AppointmentController {
         endString += ('0' + endTime.second()).right(2);
         endString += 'Z';
         //endString+='+05:30';
-    
+    	System.debug(startString+' '+endString);
         String txtInvite = '';
         txtInvite += 'BEGIN:VCALENDAR\n';
         txtInvite += 'PRODID:-//Google Inc//Google Calendar 70.9054//EN\n';
