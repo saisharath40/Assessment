@@ -25,7 +25,7 @@ public class CalendarController {
                 myEvent.className = 'Meeting';
                 events.add(myEvent);
             }
-        System.debug(events.size());
+       // System.debug(events.size());
     }
      
     

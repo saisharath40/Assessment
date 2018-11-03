@@ -129,8 +129,8 @@ public class AppointmentController {
             	e.EndDateTime= DateTime.newInstanceGMT(Integer.valueOf(year), Integer.valueOf(month)+1, Integer.valueOf(dateSelected), Integer.valueOf(eHour),Integer.valueOf(eMinute), 0);
             }
             
-           	System.debug(e.startDateTime+' '+e.EndDateTime);
-            System.debug(DateTime.now());
+           	//System.debug(e.startDateTime+' '+e.EndDateTime);
+            //System.debug(DateTime.now());
             subj+=' with '+contactRecord.FirstName+' '+contactRecord.LastName;
             e.Subject=subj;
             e.Description='New Event Added with '+contactRecord.FirstName;
@@ -150,6 +150,11 @@ public class AppointmentController {
                 mail.setReplyTo('sharath.sai12@gmail.com');
                 mail.setSenderDisplayName('Joe');
                 mail.setSubject('Meeting Appointment');
+               /* List<String> ccAddress=new List<String>();
+                ccAddress.add('emailtosalesforce@w-324xzba3xt9ciep16loiacsjy8q0d1e5rcl3ye5fszcmfooyos.6f-2z8nruak.ap4.le.salesforce.com');
+                ccAddress.add(contactRecord.Email);
+                ccAddress.add(contactRecord.Id);
+                mail.setCcAddresses(ccAddress);*/
                 Messaging.EmailFileAttachment attach = new Messaging.EmailFileAttachment();
         		attach.filename = 'meeting.ics';
         		attach.ContentType = 'text/calendar;';
@@ -158,6 +163,10 @@ public class AppointmentController {
         		mail.setFileAttachments(new Messaging.EmailFileAttachment[] {attach});
                 String body = 'Dear ' +contactRecord.FirstName + ' '+contactRecord.LastName+' ,';
                     body+=' \n'+' Your Appointment with Joe is Scheduled .For more details, please logon to Salesforce' ;
+                	/*body+='<a href="'+URL.getSalesforceBaseUrl()+'/services/apexrest/Events/'+e.Id+'?Confirm=Yes">Accept</a>';
+                	body+='\n';
+                	body+='<a href="'+URL.getSalesforceBaseUrl()+'/services/apexrest/Events/'+e.Id+'?Confirm=No">Reject</a>';
+                	body+='\n';*/
                 mail.setHtmlBody(body);
                 mails.add(mail);
                 Messaging.SendEmailResult[] results=Messaging.sendEmail(mails);
@@ -213,7 +222,6 @@ public class AppointmentController {
         endString += ('0' + endTime.second()).right(2);
         endString += 'Z';
         //endString+='+05:30';
-    	System.debug(startString+' '+endString);
         String txtInvite = '';
         txtInvite += 'BEGIN:VCALENDAR\n';
         txtInvite += 'PRODID:-//Google Inc//Google Calendar 70.9054//EN\n';
@@ -229,7 +237,7 @@ public class AppointmentController {
         txtInvite += ' TRUE;X-NUM-GUESTS=0:mailto:' + recipient + '\n';
         txtInvite += 'CREATED:' + nowString + '\n';
         txtInvite += 'LAST-MODIFIED:' + nowString + '\n';
-        txtInvite += 'LOCATION:TBD\n';
+        txtInvite += 'LOCATION:ONLINE\n';
         txtInvite += 'STATUS:CONFIRMED\n';
         txtInvite += 'SUMMARY: Meeting Invite with ' + recipient + '\n';
         txtInvite += 'TRANSP:OPAQUE\n';
