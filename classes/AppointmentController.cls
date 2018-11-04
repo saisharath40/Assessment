@@ -55,6 +55,7 @@ public class AppointmentController {
     }
     
     public List<SelectOption> getHours() {
+        //Options for Time Selection
         List<SelectOption> hours = new List<SelectOption>();
          hours.add(new SelectOption('0', '0'));
         hours.add(new SelectOption('1', '1'));	hours.add(new SelectOption('2', '2'));
@@ -85,6 +86,7 @@ public class AppointmentController {
     }
     
     public List<SelectOption> getSubjects() {
+        //Options for Subjects
         List<SelectOption> subjects = new List<SelectOption>();
         subjects.add(new SelectOption('Appointment', 'Appointment'));
         subjects.add(new SelectOption('Call', 'Call'));
@@ -106,6 +108,7 @@ public class AppointmentController {
     }
     
     public Pagereference saveAppointment(){
+        //Logic to Save Appointment for Selected Date & Time
         Event e=new Event();
         try{
             e.WhoId=contactId;
@@ -141,6 +144,7 @@ public class AppointmentController {
             }
             else{
                 insert e;
+                //Sending Email to Contact for Confirmation
                 List<Messaging.SingleEmailMessage> mails =new List<Messaging.SingleEmailMessage>();
                 Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
                 //Set list of people who should get the email
@@ -173,6 +177,7 @@ public class AppointmentController {
                 for(Messaging.SendEmailResult result:results){
                     system.debug(result);
                 }
+                //Redirecting to new Event Page
                 return new PageReference('/lightning/r/Event/'+e.id+'/view');
             }
         }
@@ -188,6 +193,7 @@ public class AppointmentController {
             
     }
     public Blob invite(Datetime startTime, DateTime endTime,String recipient){
+        //Invite message for Appointment
         String nowString = '';
         System.debug(startTime+' '+endTime);
         Datetime nowDT = Datetime.now();

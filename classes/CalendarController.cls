@@ -2,7 +2,7 @@ public class CalendarController {
 
     public list<calEvent> events {get;set;}
      public Id contactID {get; set;}
-    //The calendar plugin is expecting dates is a certain format. We can use this string to get it formated correctly
+    //The calendar plugin is expecting dates is a certain format. We can use this string to get it formatted correctly
     String dtFormat = 'yyyy-MM-dd\'T\'HH:mm:ss';
      
     //constructor
@@ -12,6 +12,7 @@ public class CalendarController {
      
     public void pageLoad() {
         events = new list<calEvent>();
+        //List of Events already scheduled
             for(Event evnt: [select Id, Subject, isAllDayEvent, StartDateTime, EndDateTime from Event where OwnerID = :UserInfo.getUserId()]){
                 DateTime startDT = evnt.StartDateTime;
                 DateTime endDT = evnt.EndDateTime;

@@ -8,5 +8,10 @@
         <members>*</members>
         <name>ApexPage</name>
     </types>
+    <types>
+        <members>Contact</members>
+        <members>Event</members>
+        <name>CustomObject</name>
+    </types>
     <version>44.0</version>
 </Package>
